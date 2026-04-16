@@ -1,0 +1,17 @@
+//Prompt 1
+hola, soy un programador novato y quiero que seas como un tutor para mi, y necesito mejorar mi diseño css de la pagina
+
+//Prompt 2
+te voy a proporcionar mis codigos para que revises y juntos vayamos mejorando, no generes informacion ni codigo hasta que estemos de acuerdo
+
+//Prompt 3
+le doy mi codigo css y mi codigo html
+
+//Prompt 4
+bien yo quiero darle un aspecto empresarial, y quiero que parezca una app bancaria real, y quiero que te inspires en los que existen en la vida real y quiero que sea responsive
+
+//Prompt 5
+quiero el azul oscuro corporativo, algo mas elegante y si quiero que cambie de color
+
+//Prompt 6
+quiero un fondo moderno, que sea llamativo y corporativo

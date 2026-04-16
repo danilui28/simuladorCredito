@@ -1,70 +1,152 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+/* Reset profesional */
+* {
     margin: 0;
     padding: 0;
-}
-
-.container {
-    width: 400px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-h2 {
-    margin-top: 20px;
-    font-size: 18px;
-}
-
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
-p {
-    margin-top: 10px;
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0b1f3a; /* azul corporativo oscuro */
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
 }
 
-span {
-    font-weight: bold;
+/* Tarjeta principal */
+.container {
+    width: 100%;
+    max-width: 550px;
+
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+
+    border-radius: 14px;
+    padding: 35px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #0f2d52; /* azul corporativo oscuro */
+}
+
+/* Subtítulos */
+h2 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1c3d6e;
+    border-bottom: 1px solid #e5e9ef;
+    padding-bottom: 5px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #34495e;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #dcdfe6;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Focus moderno */
+input:focus {
+    outline: none;
+    border-color: #0f2d52;
+    box-shadow: 0 0 0 2px rgba(15, 45, 82, 0.15);
+}
+
+/* Párrafos de resultados */
+p {
+    margin-top: 12px;
+    font-size: 14px;
     color: #2c3e50;
 }
 
+/* Valores resaltados */
+span {
+    font-weight: 600;
+    color: #0f2d52;
+}
+
+/* Estado dinámico */
+.aprobado {
+    color: #1e7e34;
+    font-weight: 700;
+}
+
+.rechazado {
+    color: #c0392b;
+    font-weight: 700;
+}
+
+/* Botones */
 .buttons {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
-    justify-content: space-between;
+    gap: 15px;
 }
 
-button {
-    width: 48%;
-    padding: 10px;
+/* Botón principal */
+#btnCalcularCredito {
+    flex: 1;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
-    background-color: #3498db;
+    border-radius: 8px;
+    background-color: #0f2d52;
     color: white;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-button:hover {
-    background-color: #2980b9;
+#btnCalcularCredito:hover {
+    background-color: #123b6f;
+}
+
+/* Botón secundario */
+#btnReiniciar {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #0f2d52;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #0f2d52;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#btnReiniciar:hover {
+    background-color: #0f2d52;
+    color: white;
+}
+
+/* Responsive fino */
+@media (max-width: 480px) {
+    .container {
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
 }
