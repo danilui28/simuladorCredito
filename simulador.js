@@ -5,7 +5,10 @@ function calcular(){
 
     let Disponible=calcularDisponible(ingresos,egresos);
 
+    let Capacidad=calcularCapacidadPago(Disponible);
+
     cambiarTexto("spnDisponible",Disponible)
+    cambiarTexto("spnCapacidadPago",Capacidad)
 }
 
 cambiarTexto=function(idComponente,mensaje){
