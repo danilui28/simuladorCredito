@@ -13,3 +13,9 @@ function calcularCapacidadPago(disponible){
     Capacidad = disponible*0.50
     return Capacidad
 }
+
+function calcularInteresesSimple(plazoAnios,monto,tasa){
+    let ValorInteres
+    ValorInteres = plazoAnios*monto*(tasa/100)
+    return ValorInteres
+}
