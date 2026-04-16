@@ -13,9 +13,12 @@ function calcular(){
 
     let ValorInteres=calcularInteresesSimple(plazoAnios,monto,tasa)
 
+    let totalPagar=calcularTotalPagar(monto,ValorInteres)
+
     cambiarTexto("spnDisponible",'USD '+Disponible)
     cambiarTexto("spnCapacidadPago",'USD '+Capacidad)
     cambiarTexto("spnInteresPagar",'USD '+ValorInteres)
+    cambiarTexto("spnTotalPrestamo",'USD '+totalPagar)
 }
 
 cambiarTexto=function(idComponente,mensaje){
