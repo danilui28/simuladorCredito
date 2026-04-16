@@ -25,3 +25,9 @@ function calcularTotalPagar(monto,ValorInteres){
     Total = monto+ValorInteres+100
     return Total
 }
+
+function calcularCuotaMensual(totalPagar,plazoAnios){
+    let Cuota
+    Cuota = totalPagar/(plazoAnios*12)
+    return Cuota
+}
