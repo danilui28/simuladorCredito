@@ -17,11 +17,19 @@ function calcular(){
 
     let Cuota=calcularCuotaMensual(totalPagar,plazoAnios).toFixed(2)
 
+    let Credito=aprobarCredito(Capacidad,Cuota)
+    if (Credito==true){
+        Credito='CRÉDITO APROBADO'
+    } else if (Credito==false) {
+        Credito='CRÉDITO REPROBADO'
+    }
+
     cambiarTexto("spnDisponible",'USD '+Disponible)
     cambiarTexto("spnCapacidadPago",'USD '+Capacidad)
     cambiarTexto("spnInteresPagar",'USD '+ValorInteres)
     cambiarTexto("spnTotalPrestamo",'USD '+totalPagar)
     cambiarTexto("spnCuotaMensual",'USD '+Cuota)
+    cambiarTexto("spnEstadoCredito",Credito)
 }
 
 cambiarTexto=function(idComponente,mensaje){
