@@ -15,3 +15,6 @@ quiero el azul oscuro corporativo, algo mas elegante y si quiero que cambie de c
 
 //Prompt 6
 quiero un fondo moderno, que sea llamativo y corporativo
+
+//Prompt 7
+inventa un logo de banco para poder ponerlo en el html, con enfoque minimalista

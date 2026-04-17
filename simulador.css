@@ -7,24 +7,99 @@
 
 body {
     font-family: "Segoe UI", Arial, sans-serif;
-    background: #0b1f3a; /* azul corporativo oscuro */
+
+    background: radial-gradient(
+            circle at 50% 30%,
+            rgba(28, 61, 110, 0.35),
+            transparent 60%
+        ),
+        #081a2f;
+
     display: flex;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 60px 20px;
+    min-height: 100vh;
 }
 
-/* Tarjeta principal */
+/* Tarjeta principal efecto vidrio sutil */
 .container {
     width: 100%;
     max-width: 550px;
-
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(6px);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
 
-    border-radius: 14px;
-    padding: 35px;
+/* Encabezado banco */
+.bank-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
 
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+
+.logo-icon::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: white;
+    top: 10px;
+    left: 10px;
+    border-radius: 3px;
+}
+
+/* Header banco */
+.bank-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+/* Contenedor logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Marca geométrica minimalista */
+.logo-mark {
+    width: 28px;
+    height: 28px;
+    position: relative;
+}
+
+.logo-mark::before,
+.logo-mark::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 28px;
+    background-color: #0f2d52;
+    border-radius: 3px;
+}
+
+.logo-mark::before {
+    left: 0;
+    transform: skewX(-20deg);
+}
+
+.logo-mark::after {
+    right: 0;
+    transform: skewX(20deg);
+}
+
+/* Texto marca */
+.logo-text {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #0f2d52;
 }
 
 /* Título principal */
@@ -33,12 +108,18 @@ h1 {
     margin-bottom: 30px;
     font-size: 24px;
     font-weight: 600;
-    color: #0f2d52; /* azul corporativo oscuro */
+    color: #0f2d52;
 }
 
-/* Subtítulos */
+/* Secciones internas */
+.section-block {
+    background: rgba(15, 45, 82, 0.04);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
 h2 {
-    margin-top: 25px;
     margin-bottom: 10px;
     font-size: 16px;
     font-weight: 600;
@@ -56,61 +137,69 @@ label {
     color: #34495e;
 }
 
-/* Inputs */
+/* Inputs estilo fintech */
 input {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     margin-top: 6px;
-    border-radius: 8px;
+    border-radius: 10px;
     border: 1px solid #dcdfe6;
     font-size: 14px;
-    transition: all 0.3s ease;
+    background-color: #f9fbfd;
+    transition: all 0.25s ease;
 }
 
-/* Focus moderno */
 input:focus {
     outline: none;
     border-color: #0f2d52;
-    box-shadow: 0 0 0 2px rgba(15, 45, 82, 0.15);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(15, 45, 82, 0.12);
 }
 
-/* Párrafos de resultados */
+/* Resultados */
 p {
     margin-top: 12px;
     font-size: 14px;
     color: #2c3e50;
 }
 
-/* Valores resaltados */
 span {
     font-weight: 600;
     color: #0f2d52;
 }
 
-/* Estado dinámico */
+/* Estado tipo badge */
 .aprobado {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background-color: rgba(30, 126, 52, 0.12);
     color: #1e7e34;
     font-weight: 700;
+    font-size: 13px;
 }
 
 .rechazado {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background-color: rgba(192, 57, 43, 0.12);
     color: #c0392b;
     font-weight: 700;
+    font-size: 13px;
 }
 
 /* Botones */
 .buttons {
-    margin-top: 30px;
     display: flex;
     gap: 15px;
 }
 
-/* Botón principal */
 #btnCalcularCredito {
     flex: 1;
-    padding: 12px;
+    padding: 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #0f2d52;
     color: white;
     font-weight: 600;
@@ -122,12 +211,11 @@ span {
     background-color: #123b6f;
 }
 
-/* Botón secundario */
 #btnReiniciar {
     flex: 1;
-    padding: 12px;
+    padding: 14px;
     border: 1px solid #0f2d52;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: transparent;
     color: #0f2d52;
     font-weight: 600;
@@ -140,7 +228,7 @@ span {
     color: white;
 }
 
-/* Responsive fino */
+/* Responsive */
 @media (max-width: 480px) {
     .container {
         padding: 25px 20px;
