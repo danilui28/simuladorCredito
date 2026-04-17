@@ -1,0 +1,8 @@
+//Prompt 1
+Quiero agregar algunas validaciones que consideres necesarias para el formulario, como tipos de datos, montos máximos y mínimos, campos obligatorios
+
+//Prompt 2
+Quiero resaltar los inputs en rojo y mensaje debajo
+
+//Prompt 3
+Pero quiero que se muestren debajo de los inputs

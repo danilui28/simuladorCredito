@@ -1,39 +1,96 @@
-//AQUI EL JAVASCRIPT PARA MANIPULAR EL HTML
-function calcular(){
-    let ingresos = parseFloat(document.getElementById("txtIngresos").value);
-    let egresos = parseFloat(document.getElementById("txtEgresos").value);
+function calcular() {
 
-    let Disponible=calcularDisponible(ingresos,egresos);
+    limpiarErrores();
 
-    let Capacidad=calcularCapacidadPago(Disponible);
+    if (!validarFormulario()) return;
 
-    let monto = parseFloat(document.getElementById("txtMonto").value);
-    let plazoAnios = parseFloat(document.getElementById("txtPlazo").value);
-    let tasa = parseFloat(document.getElementById("txtTasaInteres").value);
+    let ingresos = parseFloat(txtIngresos.value);
+    let egresos = parseFloat(txtEgresos.value);
+    let monto = parseFloat(txtMonto.value);
+    let plazo = parseFloat(txtPlazo.value);
+    let tasa = parseFloat(txtTasaInteres.value);
 
-    let ValorInteres=calcularInteresesSimple(plazoAnios,monto,tasa)
+    let disponible = calcularDisponible(ingresos, egresos);
+    let capacidad = calcularCapacidadPago(disponible);
+    let interes = calcularInteresesSimple(plazo, monto, tasa);
+    let total = calcularTotalPagar(monto, interes);
+    let cuota = calcularCuotaMensual(total, plazo);
 
-    let totalPagar=calcularTotalPagar(monto,ValorInteres)
+    let aprobado = aprobarCredito(capacidad, cuota);
 
-    let Cuota=calcularCuotaMensual(totalPagar,plazoAnios).toFixed(2)
+    spnDisponible.innerText = "USD " + disponible.toFixed(2);
+    spnCapacidadPago.innerText = "USD " + capacidad.toFixed(2);
+    spnInteresPagar.innerText = "USD " + interes.toFixed(2);
+    spnTotalPrestamo.innerText = "USD " + total.toFixed(2);
+    spnCuotaMensual.innerText = "USD " + cuota.toFixed(2);
 
-    let Credito=aprobarCredito(Capacidad,Cuota)
-    if (Credito==true){
-        Credito='CRÉDITO APROBADO'
-    } else if (Credito==false) {
-        Credito='CRÉDITO REPROBADO'
+    spnEstadoCredito.classList.remove("aprobado", "rechazado");
+
+    if (aprobado) {
+        spnEstadoCredito.innerText = "CRÉDITO APROBADO";
+        spnEstadoCredito.classList.add("aprobado");
+    } else {
+        spnEstadoCredito.innerText = "CRÉDITO RECHAZADO";
+        spnEstadoCredito.classList.add("rechazado");
     }
-
-    cambiarTexto("spnDisponible",'USD '+Disponible)
-    cambiarTexto("spnCapacidadPago",'USD '+Capacidad)
-    cambiarTexto("spnInteresPagar",'USD '+ValorInteres)
-    cambiarTexto("spnTotalPrestamo",'USD '+totalPagar)
-    cambiarTexto("spnCuotaMensual",'USD '+Cuota)
-    cambiarTexto("spnEstadoCredito",Credito)
 }
 
-cambiarTexto=function(idComponente,mensaje){
-    let componente;
-    componente=document.getElementById(idComponente);
-    componente.innerText=mensaje;
+/* VALIDACIONES */
+
+function validarFormulario() {
+
+    let valido = true;
+
+    valido &= validarNumero("txtIngresos", 100, 1000000);
+    valido &= validarNumero("txtEgresos", 0, 1000000);
+    valido &= validarNumero("txtMonto", 500, 500000);
+    valido &= validarNumero("txtPlazo", 1, 30);
+    valido &= validarNumero("txtTasaInteres", 1, 60);
+
+    if (parseFloat(txtEgresos.value) > parseFloat(txtIngresos.value)) {
+        mostrarError("txtEgresos", "Los egresos no pueden ser mayores que los ingresos.");
+        valido = false;
+    }
+
+    return Boolean(valido);
+}
+
+function validarNumero(id, min, max) {
+
+    let input = document.getElementById(id);
+    let valor = parseFloat(input.value);
+
+    if (input.value.trim() === "") {
+        mostrarError(id, "Campo obligatorio.");
+        return false;
+    }
+
+    if (isNaN(valor)) {
+        mostrarError(id, "Debe ser un número válido.");
+        return false;
+    }
+
+    if (valor < min || valor > max) {
+        mostrarError(id, `Valor permitido entre ${min} y ${max}.`);
+        return false;
+    }
+
+    return true;
+}
+
+function mostrarError(id, mensaje) {
+
+    let input = document.getElementById(id);
+    input.classList.add("input-error");
+
+    let error = document.createElement("div");
+    error.className = "error-message";
+    error.innerText = mensaje;
+
+    input.closest(".form-group").appendChild(error);
+}
+
+function limpiarErrores() {
+    document.querySelectorAll(".error-message").forEach(e => e.remove());
+    document.querySelectorAll("input").forEach(i => i.classList.remove("input-error"));
 }
