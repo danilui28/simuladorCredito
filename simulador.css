@@ -168,3 +168,23 @@ button {
     background: transparent;
     color: #0f2d52;
 }
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+}
