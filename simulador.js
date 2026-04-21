@@ -5,10 +5,15 @@ function calcular() {
     if (!validarFormulario()) return;
 
     let ingresos = parseFloat(txtIngresos.value);
-    let egresos = parseFloat(txtEgresos.value);
+    let arriendo = parseFloat(txtArriendo.value);
+    let alimentacion = parseFloat(txtAlimentacion.value);
+    let varios = parseFloat(txtVarios.value);
+    let egresos = arriendo + alimentacion + varios;
     let monto = parseFloat(txtMonto.value);
     let plazo = parseFloat(txtPlazo.value);
     let tasa = parseFloat(txtTasaInteres.value);
+
+    spnTotalEgresos.innerText = "USD " + egresos.toFixed(2);
 
     let disponible = calcularDisponible(ingresos, egresos);
     let capacidad = calcularCapacidadPago(disponible);
@@ -41,18 +46,34 @@ function validarFormulario() {
 
     let valido = true;
 
-    valido &= validarNumero("txtIngresos", 100, 1000000);
-    valido &= validarNumero("txtEgresos", 0, 1000000);
-    valido &= validarNumero("txtMonto", 500, 500000);
-    valido &= validarNumero("txtPlazo", 1, 30);
-    valido &= validarNumero("txtTasaInteres", 1, 60);
+    // Ingresos
+    if (!validarNumero("txtIngresos", 100, 1000000)) valido = false;
 
-    if (parseFloat(txtEgresos.value) > parseFloat(txtIngresos.value)) {
-        mostrarError("txtEgresos", "Los egresos no pueden ser mayores que los ingresos.");
+    // Egresos individuales
+    if (!validarNumero("txtArriendo", 0, 1000000)) valido = false;
+    if (!validarNumero("txtAlimentacion", 0, 1000000)) valido = false;
+    if (!validarNumero("txtVarios", 0, 1000000)) valido = false;
+
+    // Crédito
+    if (!validarNumero("txtMonto", 500, 500000)) valido = false;
+    if (!validarNumero("txtPlazo", 1, 30)) valido = false;
+    if (!validarNumero("txtTasaInteres", 1, 60)) valido = false;
+
+    // 🔎 Validar que la SUMA no supere ingresos
+    let ingresos = parseFloat(document.getElementById("txtIngresos").value) || 0;
+
+    let arriendo = parseFloat(document.getElementById("txtArriendo").value) || 0;
+    let alimentacion = parseFloat(document.getElementById("txtAlimentacion").value) || 0;
+    let varios = parseFloat(document.getElementById("txtVarios").value) || 0;
+
+    let totalEgresos = arriendo + alimentacion + varios;
+
+    if (totalEgresos > ingresos) {
+        mostrarError("txtVarios", "La suma total de egresos no puede ser mayor que los ingresos.");
         valido = false;
     }
 
-    return Boolean(valido);
+    return valido;
 }
 
 function validarNumero(id, min, max) {
